@@ -102,7 +102,7 @@ For each question:
 - Choose **one answer**.
 - Choose how sure you are: 55%, 65%, 75%, 85%, or 95%.
 
-It is *not* important to be correct; the goal is to be give good estimates of your confidence.
+It is *not* important to be correct; the goal is to give good estimates of your confidence.
 
 You may leave questions unanswered but more answers will yield more insights.
 """
