@@ -3,25 +3,25 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-st.set_page_config(page_title="Scout Mindset Calibration Practice", layout="centered")
+st.set_page_config(page_title="Calibration Practice", layout="centered")
 
-st.title("Scout Mindset Calibration Practice")
+st.title("☑️ Belief Calibration - Inspired by The Scout Mindset")
 
-st.markdown(
-    """
-This app lets you practice **probability calibration** in the sense used in Julia Galef's *The Scout Mindset*.
+# st.markdown(
+#     """
+# This app lets you practice **probability calibration** in the sense used in Julia Galef's *The Scout Mindset*.
 
-1. Answer a series of **binary** questions.
-2. For each one, give a confidence level (55%, 65%, 75%, 85%, or 95%).
-3. The app will show how often you're actually correct at each confidence level,
-   and compare that to perfect calibration.
+# 1. Answer a series of **binary** questions.
+# 2. For each one, give a confidence level (55%, 65%, 75%, 85%, or 95%).
+# 3. The app will show how often you're actually correct at each confidence level,
+#    and compare that to perfect calibration.
 
-👉 For the original question set, see Julia Galef’s calibration practice online,
-and copy the questions/answers into the data structure below.
-"""
-)
+# 👉 For the original question set, see Julia Galef’s calibration practice online,
+# and copy the questions/answers into the data structure below.
+# """
+# )
 
-st.markdown("---")
+# st.markdown("---")
 
 # ------------------------------------------------------------------
 # 1. DEFINE YOUR QUESTIONS HERE
@@ -87,26 +87,27 @@ EXAMPLE_QUESTIONS = [
 # and then convert to a list of dicts.
 questions = EXAMPLE_QUESTIONS
 
+questions = pd.read_csv("questions.csv", sep=",").to_dict("records")
+
 # ------------------------------------------------------------------
-# 2. INPUT FORM
+# 2. INPUT FORM (RADIO BUTTONS, NO SKIP, NO PRESELECTION)
 # ------------------------------------------------------------------
 
-st.header("Questions")
+# st.header("Questions")
 
 st.markdown(
     """
 For each question:
 
-- Choose an answer (or leave as **Skip**).
-- Choose how sure you are: 55%, 65%, 75%, 85%, or 95%, or **Skip**.
+- Choose **one answer**.
+- Choose how sure you are: 55%, 65%, 75%, 85%, or 95%.
 
-You don’t have to answer every question, but the more you answer, the more informative your calibration curve will be.
+You may leave questions unanswered.
 """
 )
 
 CONFIDENCE_LEVELS = [55, 65, 75, 85, 95]
 
-# Group questions by "round" label for nicer layout
 rounds = {}
 for q in questions:
     rounds.setdefault(q["round"], []).append(q)
@@ -116,26 +117,32 @@ for round_name, qs in rounds.items():
         for q in qs:
             st.markdown(f"**Q{q['id']}. {q['prompt']}**")
 
-            # Answer choice
-            options = [q["option_1"], q["option_2"]]
-            answer = st.selectbox(
-                f"Your answer for Q{q['id']}",
-                ["Skip"] + options,
+            # -----------------------------
+            # ANSWER RADIO (NO DEFAULT)
+            # -----------------------------
+            st.radio(
+                "Your answer:",
+                [q["option_1"], q["option_2"]],
                 key=f"ans_{q['id']}",
+                index=None,  # ✅ nothing selected initially
             )
 
-            # Confidence choice
-            conf_str = st.selectbox(
-                f"How sure are you for Q{q['id']}?",
-                ["Skip"] + [f"{c}%" for c in CONFIDENCE_LEVELS],
+            # -----------------------------
+            # CONFIDENCE RADIO (NO DEFAULT)
+            # -----------------------------
+            st.radio(
+                "Your confidence:",
+                [f"{c}%" for c in CONFIDENCE_LEVELS],
                 key=f"conf_{q['id']}",
+                index=None,  # ✅ nothing selected initially
+                horizontal=True,
             )
 
             st.markdown("---")
 
 st.markdown("### When you’re ready, score your calibration:")
-
 score_button = st.button("📊 Score my calibration")
+
 
 # ------------------------------------------------------------------
 # 3. SCORING LOGIC
@@ -149,9 +156,8 @@ def collect_responses():
         ans = st.session_state.get(f"ans_{q['id']}")
         conf_str = st.session_state.get(f"conf_{q['id']}")
 
-        if not ans or ans == "Skip" or not conf_str or conf_str == "Skip":
-            # Skip unanswered questions or missing confidence
-            continue
+        if not ans or ans == "?" or not conf_str or conf_str == "?":
+            continue  # skip unanswered
 
         # Parse confidence: "75%" -> 75
         conf_percent = int(conf_str.rstrip("%"))
@@ -216,8 +222,8 @@ def compute_calibration(df: pd.DataFrame) -> pd.DataFrame:
 if score_button:
     responses_df = collect_responses()
 
-    if responses_df.empty:
-        st.warning("You need to answer at least one question *and* select a confidence level to get results.")
+    if len(responses_df) < len(questions):
+        st.warning("You need to answer all questions and give confidence intervals.")
     else:
         calib_df, brier_score, accuracy, n_used = compute_calibration(responses_df)
 

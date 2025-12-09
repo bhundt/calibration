@@ -1,0 +1,41 @@
+id,round,prompt,qtype,option_1,option_2,correct
+1,Round 1 – Animal facts,The elephant is the world’s largest mammal.,tf,True,False,2
+2,Round 1 – Animal facts,Sea otters sometimes hold hands while they sleep.,tf,True,False,1
+3,Round 1 – Animal facts,Centipedes have more legs than any other animal.,tf,True,False,2
+4,Round 1 – Animal facts,Mammals and dinosaurs coexisted.,tf,True,False,1
+5,Round 1 – Animal facts,Bears can’t climb trees.,tf,True,False,2
+6,Round 1 – Animal facts,Camels store water in their humps.,tf,True,False,2
+7,Round 1 – Animal facts,Flamingos are pink because they eat shrimp.,tf,True,False,1
+8,Round 1 – Animal facts,The giant panda eats mostly bamboo.,tf,True,False,1
+9,Round 1 – Animal facts,The platypus is the only mammal that lays eggs.,tf,True,False,2
+10,Round 1 – Animal facts,A mule is a cross between a male donkey and a female horse.,tf,True,False,1
+11,Round 2 – Historical figures,Who was born first?,either,Julius Caesar,Confucius,2
+12,Round 2 – Historical figures,Who was born first?,either,Fidel Castro,Mahatma Gandhi,2
+13,Round 2 – Historical figures,Who was born first?,either,Anne Frank,Nelson Mandela,2
+14,Round 2 – Historical figures,Who was born first?,either,Cleopatra,Muhammad,1
+15,Round 2 – Historical figures,Who was born first?,either,William Shakespeare,Joan of Arc,2
+16,Round 2 – Historical figures,Who was born first?,either,George Washington,Sun Tzu,2
+17,Round 2 – Historical figures,Who was born first?,either,Genghis Khan,Leonardo da Vinci,1
+18,Round 2 – Historical figures,Who was born first?,either,Queen Victoria,Karl Marx,2
+19,Round 2 – Historical figures,Who was born first?,either,Saddam Hussein,Marilyn Monroe,2
+20,Round 2 – Historical figures,Who was born first?,either,Albert Einstein,Mao Zedong,1
+21,Round 3 – Country populations,Which country had more people in 2019?,either,Germany,France,1
+22,Round 3 – Country populations,Which country had more people in 2019?,either,Japan,South Korea,1
+23,Round 3 – Country populations,Which country had more people in 2019?,either,Brazil,Argentina,1
+24,Round 3 – Country populations,Which country had more people in 2019?,either,Egypt,Botswana,1
+25,Round 3 – Country populations,Which country had more people in 2019?,either,Mexico,Guatemala,1
+26,Round 3 – Country populations,Which country had more people in 2019?,either,Panama,Belize,1
+27,Round 3 – Country populations,Which country had more people in 2019?,either,Jamaica,Haiti,2
+28,Round 3 – Country populations,Which country had more people in 2019?,either,Greece,Norway,1
+29,Round 3 – Country populations,Which country had more people in 2019?,either,China,India,1
+30,Round 3 – Country populations,Which country had more people in 2019?,either,Iraq,Iran,2
+31,Round 4 – Science facts,Mars has one moon just like Earth.,tf,True,False,2
+32,Round 4 – Science facts,Scurvy is caused by a deficit of vitamin C.,tf,True,False,1
+33,Round 4 – Science facts,Brass is made from iron and copper.,tf,True,False,2
+34,Round 4 – Science facts,One tablespoon of oil has more calories than one tablespoon of butter.,tf,True,False,1
+35,Round 4 – Science facts,Helium is the lightest element.,tf,True,False,2
+36,Round 4 – Science facts,The common cold is caused by bacteria.,tf,True,False,2
+37,Round 4 – Science facts,The deepest place on Earth is in the Pacific Ocean.,tf,True,False,1
+38,Round 4 – Science facts,Seasons are caused by the earth orbiting the sun in an elliptical path.,tf,True,False,2
+39,Round 4 – Science facts,Jupiter is the largest planet in our solar system.,tf,True,False,1
+40,Round 4 – Science facts,The atoms in a solid are more densely packed than the atoms in a gas.,tf,True,False,1
