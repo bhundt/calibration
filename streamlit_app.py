@@ -87,7 +87,7 @@ EXAMPLE_QUESTIONS = [
 # and then convert to a list of dicts.
 questions = EXAMPLE_QUESTIONS
 
-questions = pd.read_csv("questions.csv", sep=",").to_dict("records")
+# questions = pd.read_csv("questions.csv", sep=",").to_dict("records")
 
 # ------------------------------------------------------------------
 # 2. INPUT FORM (RADIO BUTTONS, NO SKIP, NO PRESELECTION)
@@ -222,8 +222,8 @@ def compute_calibration(df: pd.DataFrame) -> pd.DataFrame:
 if score_button:
     responses_df = collect_responses()
 
-    if len(responses_df) < len(questions):
-        st.warning("You need to answer all questions and give confidence intervals.")
+    if len(responses_df) < 1:
+        st.warning("You need to answer at least one questions.")
     else:
         calib_df, brier_score, accuracy, n_used = compute_calibration(responses_df)
 
@@ -300,7 +300,9 @@ if score_button:
             .mark_line(strokeDash=[4, 4])
             .encode(
                 x="stated_confidence:Q",
-                y="perfect_line:Q",
+                y=alt.Y("perfect_line:Q").scale(
+                    domain=[min(min(CONFIDENCE_LEVELS), min(chart_df.percent_correct)), 100]
+                ),
             )
         )
 
