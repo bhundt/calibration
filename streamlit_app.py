@@ -102,7 +102,9 @@ For each question:
 - Choose **one answer**.
 - Choose how sure you are: 55%, 65%, 75%, 85%, or 95%.
 
-You may leave questions unanswered.
+It is *not* important to be correct; the goal is to be give good estimates of your confidence.
+
+You may leave questions unanswered but more answers will yield more insights.
 """
 )
 
@@ -113,7 +115,7 @@ for q in questions:
     rounds.setdefault(q["round"], []).append(q)
 
 for round_name, qs in rounds.items():
-    with st.expander(round_name, expanded=True):
+    with st.expander(round_name, expanded=False):
         for q in qs:
             st.markdown(f"**Q{q['id']}. {q['prompt']}**")
 
