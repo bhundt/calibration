@@ -87,7 +87,7 @@ EXAMPLE_QUESTIONS = [
 # and then convert to a list of dicts.
 questions = EXAMPLE_QUESTIONS
 
-# questions = pd.read_csv("questions.csv", sep=",").to_dict("records")
+questions = pd.read_csv("questions.csv", sep=",").to_dict("records")
 
 # ------------------------------------------------------------------
 # 2. INPUT FORM (RADIO BUTTONS, NO SKIP, NO PRESELECTION)
